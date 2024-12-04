@@ -1,0 +1,9 @@
+dist/
+node_modules/
+.DS_Store
+.vscode/
+.firebaserc
+.firebase/
+firebase-debug.log
+package-lock.json
+plan8-klang-sync.js
