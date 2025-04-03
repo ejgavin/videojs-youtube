@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video.js YouTube Player</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        input { width: 60%; padding: 8px; margin-bottom: 10px; }
+        button { padding: 8px 12px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h2>Video.js YouTube Player</h2>
+    <input type="text" id="videoUrl" placeholder="Paste YouTube URL here..." />
+    <button onclick="redirectToPlayer()">Play</button>
+
+    <br><br>
+
+    <script>
+        function extractVideoId(url) {
+            let match = url.match(/(?:youtube\.com\/(?:.*v=|embed\/)|youtu\.be\/)([^&?/]+)/);
+            return match ? match[1] : null;
+        }
+
+        function redirectToPlayer() {
+            let url = document.getElementById("videoUrl").value;
+            let videoId = extractVideoId(url);
+            if (!videoId) {
+                alert("Invalid YouTube URL");
+                return;
+            }
+
+            // Redirect to the Video.js player URL with the video ID appended as a query parameter
+            let playerUrl = "https://videojs-youtube.vercel.app/watch.html?video=" + videoId;
+            window.location.href = playerUrl;
+        }
+    </script>
+
+</body>
+</html>
